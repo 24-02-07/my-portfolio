@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinut Piradi - Portfolio</title>
+    <meta name="description" content="Minimalist personal portfolio of Vinut Piradi, an Electronics and Communication Engineering (ECE) student, specializing in AI-assisted development and hardware automation.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <!-- Google Fonts for typography -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                brand: {
+                  cream: '#f4f1ea',
+                  gold: '#c5a059',
+                  dark: '#1a202c',
+                }
+              },
+              fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+                display: ['Montserrat', 'sans-serif'],
+              }
+            }
+          }
+        }
+    </script>
+    
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style data-purpose="custom-layout-styles">
+        /* Background Pattern Simulation */
+        .bg-pattern {
+          background-color: #f4f1ea;
+          background-image: radial-gradient(#d1cfc7 0.5px, transparent 0.5px);
+          background-size: 40px 40px;
+          position: relative;
+        }
+        
+        /* Decorative Circuit Line Overlays */
+        .circuit-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+          opacity: 0.15;
+          background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M10 10 L30 10 L30 30 M70 10 L90 10 L90 30 M10 90 L10 70 L30 70 M90 90 L90 70 L70 70" stroke="%23c5a059" fill="none" stroke-width="0.5"/></svg>');
+        }
+    
+        /* Soft shadow for the monogram */
+        .monogram-shadow {
+          filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.1));
+        }
+    
+        /* Gold Gradient Text */
+        .text-gold-gradient {
+          background: linear-gradient(to right, #c5a059, #f3d79a, #c5a059, #f7e6c4, #c5a059);
+          background-size: 200% auto;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: gold-shine 4s linear infinite;
+        }
+
+        @keyframes gold-shine {
+          0% {
+            background-position: 0% center;
+          }
+          100% {
+            background-position: 200% center;
+          }
+        }
+
+        /* Name reveal animation */
+        .animate-name {
+          animation: tracking-in-expand 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+
+        @keyframes tracking-in-expand {
+          0% {
+            letter-spacing: -0.2em;
+            opacity: 0;
+            filter: blur(8px);
+          }
+          40% {
+            opacity: 0.6;
+          }
+          100% {
+            opacity: 1;
+            filter: blur(0px);
+          }
+        }
+    
+        /* Timeline Line */
+        .timeline-line {
+          height: 2px;
+          background: linear-gradient(to right, rgba(197, 160, 89, 0.2), #c5a059);
+          position: relative;
+        }
+    
+        .timeline-dot {
+          width: 8px;
+          height: 8px;
+          background-color: #c5a059;
+          border-radius: 50%;
+          box-shadow: 0 0 10px #c5a059;
+        }
+    
+        /* Navigation Hover Underline */
+        .nav-link {
+          position: relative;
+          transition: color 0.3s ease;
+        }
+        /* Apple Liquid Glass Navbar Styling */
+        #header {
+          position: fixed;
+          top: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 82%;
+          max-width: 1100px;
+          height: 72px;
+          z-index: 1000;
+          border-radius: 24px;
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          
+          /* Liquid Glass Background & Highlights */
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.08) 100%);
+          backdrop-filter: blur(25px);
+          -webkit-backdrop-filter: blur(25px);
+          
+          /* Translucent Gold Border */
+          border: 1px solid rgba(212, 175, 55, 0.18);
+          
+          /* Lighting and Reflections */
+          box-shadow: 
+            inset 0 1.5px 0 rgba(255, 255, 255, 0.45), 
+            inset 0 -1px 0 rgba(0, 0, 0, 0.02),
+            0 8px 32px rgba(23, 32, 51, 0.05),
+            0 1px 2px rgba(23, 32, 51, 0.02);
+          
+          display: flex;
+          align-items: center;
+          overflow: hidden;
+        }
+
+        /* Gently elevates and compresses while scrolling */
+        #header.scrolled {
+          top: 12px;
+          height: 64px;
+          width: 85%;
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.12) 100%);
+          border: 1px solid rgba(212, 175, 55, 0.25);
+          box-shadow: 
+            inset 0 1.5px 0 rgba(255, 255, 255, 0.5), 
+            inset 0 -1px 0 rgba(0, 0, 0, 0.03),
+            0 16px 40px rgba(23, 32, 51, 0.08),
+            0 2px 4px rgba(23, 32, 51, 0.03);
+        }
+
+        /* Subtle reflection shimmer effect on hover */
+        #header::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 50%;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.12) 20%,
+            rgba(255, 255, 255, 0.25) 60%,
+            transparent
+          );
+          transform: skewX(-25deg);
+          transition: all 0.75s ease;
+          pointer-events: none;
+          border-radius: 24px;
+        }
+
+        #header:hover::before {
+          left: 150%;
+          transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Custom Navigation Link overrides */
+        .nav-link {
+          font-weight: 500;
+          color: #172033;
+          padding: 6px 14px;
+          border-radius: 9999px;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          display: inline-block;
+          border: 1px solid transparent;
+          text-decoration: none;
+        }
+
+        .nav-link:hover {
+          color: #c5a059 !important;
+          transform: translateY(-1.5px);
+        }
+
+        /* Active gold capsule selector */
+        .nav-link.active {
+          color: #c5a059 !important;
+          background: rgba(197, 160, 89, 0.12);
+          border: 1px solid rgba(197, 160, 89, 0.25);
+          box-shadow: 
+            inset 0 1px 0 rgba(255, 255, 255, 0.3),
+            0 4px 12px rgba(197, 160, 89, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-brand-cream font-sans text-brand-dark overflow-x-hidden">
+
+    <!-- Mouse spotlight tracker container -->
+    <div id="spotlight" class="spotlight"></div>
+
+    <!-- BEGIN: MainHeader -->
+    <header id="header">
+        <div class="w-full max-w-6xl mx-auto px-6 flex justify-between items-center">
+            <!-- Luxury Logo -->
+            <a href="#hero" class="text-lg font-display tracking-[0.2em] font-medium text-[#172033] hover:opacity-90 transition-opacity">
+                VINUT<span class="text-[#c5a059]">.P</span>
+            </a>
+            
+            <nav data-purpose="primary-navigation">
+                <ul class="flex space-x-4 md:space-x-8 text-xs md:text-sm font-medium tracking-wide text-gray-700">
+                    <li class=""><a class="nav-link active" href="#hero">Home</a></li>
+                    <li class=""><a class="nav-link" href="#about">About</a></li>
+                    <li class=""><a class="nav-link" href="#education">Education</a></li>
+                    <li class=""><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class=""><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class=""><a class="nav-link" href="#activities">Activities</a></li>
+                    <li class=""><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- END: MainHeader -->
+
+    <!-- BEGIN: HeroSection -->
+    <main id="hero" class="relative min-h-screen flex flex-col items-center justify-between pt-20 pb-4 px-4 bg-pattern overflow-hidden">
+        <!-- Background Decor -->
+        <div class="circuit-overlay"></div>
+
+        <!-- BEGIN: HeroContent -->
+        <div class="flex flex-col items-center text-center z-10 mt-12 w-full max-w-5xl">
+            <!-- Monogram and Logo -->
+            <div class="relative mb-4 w-[220px] h-[220px] flex items-center justify-center" data-purpose="logo-container">
+                <!-- Premium Titan Edge VP Monogram Dial with PCB Traces -->
+                <svg class="signature-logo w-full h-full" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <!-- Shifting Luxury Gold Gradient -->
+                        <linearGradient id="geom-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#f5d78e" />
+                            <stop offset="25%" stop-color="#d4af37" />
+                            <stop offset="50%" stop-color="#fff8e1" />
+                            <stop offset="75%" stop-color="#b8860b" />
+                            <stop offset="100%" stop-color="#8b6508" />
+                            <animate attributeName="x1" from="-100%" to="100%" dur="14s" repeatCount="indefinite" />
+                            <animate attributeName="x2" from="0%" to="200%" dur="14s" repeatCount="indefinite" />
+                        </linearGradient>
+                        
+                        <!-- 3D Specular Emboss Filter for Thin Lines -->
+                        <filter id="geom-emboss" x="-20%" y="-20%" width="140%" height="140%">
+                            <feGaussianBlur in="SourceAlpha" stdDeviation="0.8" result="blur" />
+                            <feSpecularLighting in="blur" surfaceScale="2" specularConstant="1.8" specularExponent="30" lighting-color="#ffffff" result="specOut">
+                                <fePointLight x="-5000" y="-10000" z="50" />
+                            </feSpecularLighting>
+                            <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut" />
+                            <feComposite in="SourceGraphic" in2="specOut" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litPaint" />
+                            <feDropShadow dx="1" dy="1.5" stdDeviation="1.2" flood-color="#8b6508" flood-opacity="0.35" />
+                        </filter>
+                    </defs>
+                    
+                    <!-- Outer Watch Bezel -->
+                    <g filter="url(#geom-emboss)">
+                        <!-- Outer bezel ring (Titan Edge thin bezel) -->
+                        <circle cx="150" cy="150" r="138" stroke="url(#geom-gold)" stroke-width="3.5" fill="none" />
+                        <!-- Chronograph fine perimeter ticks (exactly 150 marks) -->
+                        <circle cx="150" cy="150" r="133" stroke="url(#geom-gold)" stroke-width="2.2" stroke-dasharray="1 4.57" fill="none" opacity="0.75" />
+                        <!-- Inner precision ring -->
+                        <circle cx="150" cy="150" r="128" stroke="url(#geom-gold)" stroke-width="1.2" fill="none" opacity="0.85" />
+                    </g>
+
+                    <!-- Hour Ticks & Minimal Markings -->
+                    <g stroke="url(#geom-gold)" stroke-width="1.5" stroke-linecap="round" opacity="0.8">
+                        <!-- 12 o'clock (triangle indicator) -->
+                        <polygon points="150,14 146,24 154,24" fill="url(#geom-gold)" stroke="none" />
+                        <!-- Rotated radial ticks for hours (every 30 deg) -->
+                        <line x1="150" y1="22" x2="150" y2="30" transform="rotate(30 150 150)" />
+                        <line x1="150" y1="22" x2="150" y2="30" transform="rotate(60 150 150)" />
+                        <line x1="150" y1="22" x2="150" y2="30" transform="rotate(90 150 150)" />
+                        <line x1="150" y1="22" x2="150" y2="30" transform="rotate(120 150 150)" />
+                        <line x1="150" y1="22" x2="150" y2="30" transform="rotate(150 150 150)" />
+                        <line x1="150" y1="22" x2="150" y2="30" transform="rotate(180 150 150)" />
+                        <line x1="150" y1="22" x2="150" y2="30" transform="rotate(210 150 150)" />
+                        <line x1="150" y1="22" x2="150" y2="30" transform="rotate(240 150 150)" />
+                        <line x1="150" y1="22" x2="150" y2="30" transform="rotate(270 150 150)" />
+                        <line x1="150" y1="22" x2="150" y2="30" transform="rotate(300 150 150)" />
+                        <line x1="150" y1="22" x2="150" y2="30" transform="rotate(330 150 150)" />
+                    </g>
+
+                    <!-- Precision Grid Crosshairs (Titan Edge engineering dial style) -->
+                    <g stroke="url(#geom-gold)" stroke-width="0.8" stroke-dasharray="2 3" opacity="0.3">
+                        <line x1="40" y1="150" x2="85" y2="150" />
+                        <line x1="215" y1="150" x2="260" y2="150" />
+                        <line x1="150" y1="40" x2="150" y2="85" />
+                        <line x1="150" y1="215" x2="150" y2="260" />
+                    </g>
+
+                    <!-- Minimal branding/dial texts -->
+                    <text x="150" y="78" font-family="'Montserrat', sans-serif" font-size="6" font-weight="600" letter-spacing="0.3em" fill="url(#geom-gold)" text-anchor="middle" opacity="0.75">ENGINEERING</text>
+                    <text x="150" y="234" font-family="'Montserrat', sans-serif" font-size="6" font-weight="600" letter-spacing="0.35em" fill="url(#geom-gold)" text-anchor="middle" opacity="0.75">PRECISION</text>
+
+                    <!-- Monogram VP (Geometric & Embossed, Ultra-Thin Proportions) -->
+                    <g filter="url(#geom-emboss)" stroke="url(#geom-gold)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <!-- Symmetrical V at the top -->
+                        <path d="M 96,95 L 150,145" stroke-width="3.5" />
+                        <path d="M 204,95 L 150,145" stroke-width="3.5" />
+                        <!-- Common vertical stem (from V vertex down) -->
+                        <path d="M 150,145 L 150,210" stroke-width="3.5" />
+                        <!-- Geometric P Loop -->
+                        <path d="M 150,145 C 185,145 205,152 205,162 C 205,172 185,179 150,179" stroke-width="3.5" />
+                    </g>
+
+                    <!-- Integrated PCB Traces extending from Monogram -->
+                    <g stroke="url(#geom-gold)" stroke-width="1.5" fill="none" opacity="0.8" stroke-linecap="round">
+                        <!-- Right Trace 1 (from P loop peak) -->
+                        <path d="M 205,162 L 222,162 L 234,150" />
+                        <circle cx="234" cy="150" r="2.5" fill="url(#geom-gold)" stroke="none" />
+                        
+                        <!-- Right Trace 2 (from lower P loop curve) -->
+                        <path d="M 195,172 L 212,189 L 224,189" />
+                        <circle cx="224" cy="189" r="2" fill="url(#geom-gold)" stroke="none" />
+
+                        <!-- Left Trace 3 (from V left leg for symmetry) -->
+                        <path d="M 118,115 L 98,115 L 86,103" />
+                        <circle cx="86" cy="103" r="2" fill="url(#geom-gold)" stroke="none" />
+
+                        <!-- Left Trace 4 (from lower left space) -->
+                        <path d="M 132,128 L 110,150 L 98,150" />
+                        <circle cx="98" cy="150" r="2" fill="url(#geom-gold)" stroke="none" />
+                    </g>
+                </svg>
+            </div>
+            <!-- Main Name and Tagline -->
+            <div class="mb-6">
+                <h1 class="text-3xl md:text-5xl font-display font-light tracking-[0.4em] mb-2 text-brand-dark animate-name">
+                    VINUT <span class="text-gold-gradient font-medium">PIRADI</span>
+                </h1>
+                <p class="text-xs md:text-sm tracking-[0.5em] text-brand-gold font-medium uppercase">
+                    FROM CURIOSITY TO CREATION
+                </p>
+            </div>
+            <!-- BEGIN: TimelineSection -->
+            <div class="w-full max-w-4xl relative mb-8 px-4 md:px-0" data-purpose="experience-timeline">
+                <!-- Breguet Classique Gold Engraved Path -->
+                <svg class="absolute top-0 left-0 w-full h-[40px] pointer-events-none z-0" viewBox="0 0 1000 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Smooth Handcrafted Bézier Curve -->
+                    <path d="M 100,15 C 180,6 220,30 300,27 C 380,24 420,6 500,15 C 580,24 620,30 700,27 C 780,24 820,6 900,12 C 930,10 942,7 960,4" 
+                          stroke="url(#geom-gold)" stroke-width="1.8" fill="none" stroke-linecap="round" />
+                    <!-- Refined Tapered Arrowhead (Calligraphy/Breguet inspired) -->
+                    <polygon points="960,4 952,8 954,4 952,0" fill="url(#geom-gold)" />
+                </svg>
+                <!-- Timeline Items -->
+                <div class="grid grid-cols-5 relative">
+                    <!-- Item 1: Gokak -->
+                    <div class="flex flex-col items-center group transition-transform duration-500" style="transform: translateY(11px);">
+                        <div class="z-10 mb-8"><div class="timeline-dot"></div></div>
+                        <div class="mb-3 text-brand-gold">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></svg>
+                        </div>
+                        <h4 class="text-[10px] md:text-xs font-bold tracking-widest mb-2 uppercase">GOKAK</h4>
+                        <p class="text-[8px] md:text-[10px] text-gray-500 leading-tight">Where it all<br>began</p>
+                    </div>
+                    <!-- Item 2: Learning -->
+                    <div class="flex flex-col items-center transition-transform duration-500" style="transform: translateY(23px);">
+                        <div class="z-10 mb-8"><div class="timeline-dot"></div></div>
+                        <div class="mb-3 text-brand-gold">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.89 9.5l8.11 4.42 8.11-4.42-8.11-4.42L3.89 9.5z"></path><path d="M5 13.18v2.81c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-2.81l-7 3.82-7-3.82z"></path></svg>
+                        </div>
+                        <h4 class="text-[10px] md:text-xs font-bold tracking-widest mb-2 uppercase">LEARNING</h4>
+                        <p class="text-[8px] md:text-[10px] text-gray-500 leading-tight">Building the<br>foundation</p>
+                    </div>
+                    <!-- Item 3: Building -->
+                    <div class="flex flex-col items-center transition-transform duration-500" style="transform: translateY(11px);">
+                        <div class="z-10 mb-8"><div class="timeline-dot"></div></div>
+                        <div class="mb-3 text-brand-gold">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"></path></svg>
+                        </div>
+                        <h4 class="text-[10px] md:text-xs font-bold tracking-widest mb-2 uppercase">BUILDING</h4>
+                        <p class="text-[8px] md:text-[10px] text-gray-500 leading-tight">Turning ideas into<br>real projects</p>
+                    </div>
+                    <!-- Item 4: Hackathons -->
+                    <div class="flex flex-col items-center transition-transform duration-500" style="transform: translateY(23px);">
+                        <div class="z-10 mb-8"><div class="timeline-dot"></div></div>
+                        <div class="mb-3 text-brand-gold">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-1.3l-.85-.6A4.997 4.997 0 017 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.06-2.15 4.1z"></path></svg>
+                        </div>
+                        <h4 class="text-[10px] md:text-xs font-bold tracking-widest mb-2 uppercase">HACKATHONS</h4>
+                        <p class="text-[8px] md:text-[10px] text-gray-500 leading-tight">Hackathons &amp;<br>innovation</p>
+                    </div>
+                    <!-- Item 5: Growing -->
+                    <div class="flex flex-col items-center transition-transform duration-500" style="transform: translateY(8px);">
+                        <div class="z-10 mb-8"><div class="timeline-dot"></div></div>
+                        <div class="mb-3 text-brand-gold">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"></path></svg>
+                        </div>
+                        <h4 class="text-[10px] md:text-xs font-bold tracking-widest mb-2 uppercase">GROWING</h4>
+                        <p class="text-[8px] md:text-[10px] text-gray-500 leading-tight">Every day,<br>a better version</p>
+                    </div>
+                </div>
+            </div>
+            <!-- END: TimelineSection -->
+            <!-- Focus Pillars -->
+            <div class="flex items-center justify-center space-x-8 md:space-x-12 mb-6" data-purpose="pillars">
+                <div class="flex items-center space-x-3">
+                    <svg class="w-5 h-5 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                    <span class="text-sm md:text-lg font-display tracking-[0.3em]">LEARN.</span>
+                </div>
+                <div class="h-8 w-px bg-gray-300"></div>
+                <div class="flex items-center space-x-3">
+                    <svg class="w-5 h-5 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                    <span class="text-sm md:text-lg font-display tracking-[0.3em]">BUILD.</span>
+                </div>
+                <div class="h-8 w-px bg-gray-300"></div>
+                <div class="flex items-center space-x-3">
+                    <svg class="w-5 h-5 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                    <span class="text-sm md:text-lg font-display tracking-[0.3em]">IMPROVE.</span>
+                </div>
+            </div>
+            <!-- About Excerpt -->
+            <div class="max-w-2xl px-6">
+                <p class="text-xs md:text-sm leading-relaxed text-gray-600 font-light tracking-wide">
+                    An ECE student passionate about Electronics, Code, and Creating Impact<br class="hidden md:block">
+                    through Continuous Learning and Real-World Projects.
+                </p>
+            </div>
+        </div>
+        <!-- END: HeroContent -->
+        <!-- BEGIN: FooterHint -->
+        <footer class="mt-auto flex flex-col items-center space-y-2 pb-4 z-10">
+            <a href="#about" class="flex flex-col items-center space-y-2">
+                <span class="text-[10px] md:text-xs tracking-[0.4em] text-brand-gold font-semibold uppercase">SCROLL TO EXPLORE</span>
+                <div class="animate-bounce mt-1">
+                    <svg class="w-4 h-4 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                    </svg>
+                </div>
+            </a>
+        </footer>
+        <!-- END: FooterHint -->
+    </main>
+    <!-- END: HeroSection -->
+       
+    <!-- About & Biodata Section -->
+    <section id="about" class="about-section scroll-reveal fade-in-up">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="subtitle">ABOUT</span>
+                <h2 class="title">About <span class="title-gradient">Me</span></h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="about-biodata-grid">
+                <!-- Left: About Me Card -->
+                <div class="about-card glass-card scroll-reveal fade-in-left">
+                    <p class="about-text">
+                        I am Vinut Piradi, an Electronics and Communication Engineering (ECE) student currently pursuing my Bachelor of Engineering at S. G. Balekundri Institute of Technology, Belagavi. I was born on 4 March 2007 and am originally from Gokak, Karnataka. I currently reside in Belagavi for my higher education.
+                    </p>
+                    <p class="about-text">
+                        I completed my secondary education at GES Modern English Medium School in 2023 and my Pre-University education at C. S. Angadi PU College, Gokak in 2025. Presently, I am pursuing my undergraduate studies in Electronics and Communication Engineering during the academic year 2025–26.
+                    </p>
+                    <p class="about-text">
+                        I enjoy exploring technology, building academic projects, and learning through AI-assisted development. I use modern AI tools to transform ideas into working websites and innovative project solutions. My interests include electronics, problem-solving, project development, and continuously learning new technologies. My goal is to enhance my technical skills and become a competent engineer capable of creating innovative solutions.
+                    </p>
+                </div>
+
+                <!-- Right: Biodata Card -->
+                <div class="biodata-card glass-card scroll-reveal fade-in-right">
+                    <div class="biodata-grid">
+                        <!-- Full Name -->
+                        <div class="biodata-item">
+                            <div class="biodata-header">
+                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                <span>Full Name</span>
+                            </div>
+                            <div class="biodata-value">Vinut Piradi</div>
+                        </div>
+
+                        <!-- Date of Birth -->
+                        <div class="biodata-item">
+                            <div class="biodata-header">
+                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                                <span>Date of Birth</span>
+                            </div>
+                            <div class="biodata-value">4 March 2007</div>
+                        </div>
+
+                        <!-- Place of Birth -->
+                        <div class="biodata-item">
+                            <div class="biodata-header">
+                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                <span>Place of Birth</span>
+                            </div>
+                            <div class="biodata-value">Gokak, Karnataka</div>
+                        </div>
+
+                        <!-- Hometown -->
+                        <div class="biodata-item">
+                            <div class="biodata-header">
+                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                                <span>Hometown</span>
+                            </div>
+                            <div class="biodata-value">Gokak, Karnataka</div>
+                        </div>
+
+                        <!-- Current Residence -->
+                        <div class="biodata-item">
+                            <div class="biodata-header">
+                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="22" x2="9" y2="16"></line><line x1="15" y1="22" x2="15" y2="16"></line><line x1="9" y1="16" x2="15" y2="16"></line><path d="M9 6h6v4H9z"></path></svg>
+                                <span>Residence</span>
+                            </div>
+                            <div class="biodata-value">Belagavi, Karnataka</div>
+                        </div>
+
+                        <!-- Nationality -->
+                        <div class="biodata-item">
+                            <div class="biodata-header">
+                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+                                <span>Nationality</span>
+                            </div>
+                            <div class="biodata-value">Indian</div>
+                        </div>
+
+                        <!-- Course -->
+                        <div class="biodata-item">
+                            <div class="biodata-header">
+                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path></svg>
+                                <span>Course</span>
+                            </div>
+                            <div class="biodata-value">B.E.</div>
+                        </div>
+
+                        <!-- Branch -->
+                        <div class="biodata-item">
+                            <div class="biodata-header">
+                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>
+                                <span>Branch</span>
+                            </div>
+                            <div class="biodata-value">ECE</div>
+                        </div>
+
+                        <!-- College -->
+                        <div class="biodata-item" style="grid-column: span 2;">
+                            <div class="biodata-header">
+                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 22H2M16 22V10a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v12M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18"></path></svg>
+                                <span>College</span>
+                            </div>
+                            <div class="biodata-value">S. G. Balekundri Institute of Technology, Belagavi</div>
+                        </div>
+
+                        <!-- Academic Year -->
+                        <div class="biodata-item" style="grid-column: span 2;">
+                            <div class="biodata-header">
+                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                <span>Academic Year</span>
+                            </div>
+                            <div class="biodata-value">2025–26</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="education-section scroll-reveal fade-in-up">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="subtitle">EDUCATION</span>
+                <h2 class="title">My <span class="title-gradient">Education</span></h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="education-timeline">
+                <!-- Timeline item 1 -->
+                <div class="timeline-card glass-card scroll-reveal fade-in-up">
+                    <div class="timeline-marker"></div>
+                    <span class="timeline-period">2025–26 (Present)</span>
+                    <h3>Bachelor of Engineering (B.E.)</h3>
+                    <p class="timeline-inst">S. G. Balekundri Institute of Technology, Belagavi</p>
+                    <p class="timeline-detail">
+                        Currently pursuing undergraduate studies in Electronics and Communication Engineering (ECE).
+                    </p>
+                </div>
+                
+                <!-- Timeline item 2 -->
+                <div class="timeline-card glass-card scroll-reveal fade-in-up">
+                    <div class="timeline-marker"></div>
+                    <span class="timeline-period">2025</span>
+                    <h3>Pre-University Education</h3>
+                    <p class="timeline-inst">C. S. Angadi PU College, Gokak</p>
+                    <p class="timeline-detail">
+                        Completed 11th and 12th Standard.
+                    </p>
+                </div>
+                
+                <!-- Timeline item 3 -->
+                <div class="timeline-card glass-card scroll-reveal fade-in-up">
+                    <div class="timeline-marker"></div>
+                    <span class="timeline-period">2023</span>
+                    <h3>Secondary Education</h3>
+                    <p class="timeline-inst">GES Modern English Medium School</p>
+                    <p class="timeline-detail">
+                        Completed 1st to 10th Standard with a strong academic foundation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section scroll-reveal fade-in-up">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="subtitle">SKILLS</span>
+                <h2 class="title">Skills & <span class="title-gradient">Interests</span></h2>
+                <div class="section-divider"></div>
+                <p class="section-desc">Technologies, tools, and areas that I am currently learning and exploring as an Electronics and Communication Engineering student.</p>
+                <p class="section-sub-desc">Always learning, building, and improving through projects and experimentation.</p>
+            </div>
+            
+            <div class="skills-grid scroll-reveal scale-in">
+                <!-- Skill 1 -->
+                <div class="skill-card glass-card">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    </div>
+                    <h3>HTML</h3>
+                    <p>Creating structured web pages using HTML elements, layouts, forms, tables, and semantic tags.</p>
+                </div>
+
+                <!-- Skill 2 -->
+                <div class="skill-card glass-card">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                    </div>
+                    <h3>CSS</h3>
+                    <p>Designing responsive and visually appealing websites using modern layouts, styling, and animations.</p>
+                </div>
+
+                <!-- Skill 3 -->
+                <div class="skill-card glass-card">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"></path></svg>
+                    </div>
+                    <h3>JavaScript Basics</h3>
+                    <p>Learning JavaScript fundamentals to add interactivity, user actions, and dynamic behavior to web pages.</p>
+                </div>
+
+                <!-- Skill 4 -->
+                <div class="skill-card glass-card">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                    </div>
+                    <h3>AI-Assisted Development</h3>
+                    <p>Using AI tools to learn, build websites, solve coding challenges, and transform ideas into working projects.</p>
+                </div>
+
+                <!-- Skill 5 -->
+                <div class="skill-card glass-card">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="7" width="20" height="10" rx="2" ry="2"></rect><circle cx="17" cy="12" r="2"></circle><line x1="2" y1="12" x2="15" y2="12"></line></svg>
+                    </div>
+                    <h3>Electronics</h3>
+                    <p>Basic understanding of electronic components, Arduino projects, sensors, circuits, and hardware integration.</p>
+                </div>
+
+                <!-- Skill 6 -->
+                <div class="skill-card glass-card">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1 0-3.88 2.5 2.5 0 0 1 0-3.88 2.5 2.5 0 0 1 0-3.88A2.5 2.5 0 0 1 9.5 2zM14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 0-3.88 2.5 2.5 0 0 0 0-3.88 2.5 2.5 0 0 0 0-3.88A2.5 2.5 0 0 0 14.5 2z"></path></svg>
+                    </div>
+                    <h3>Problem Solving</h3>
+                    <p>Approaching challenges through logical thinking, experimentation, continuous learning, and project development.</p>
+                </div>
+
+                <!-- Skill 7 -->
+                <div class="skill-card glass-card">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </div>
+                    <h3>GitHub & Collaboration</h3>
+                    <p>Using GitHub to explore projects, manage code, learn from open-source communities, and collaborate with others.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section scroll-reveal fade-in-up">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="subtitle">PROJECTS</span>
+                <h2 class="title">Projects & <span class="title-gradient">Creations</span></h2>
+                <div class="section-divider"></div>
+                <p class="section-desc">A collection of hardware projects, web development experiments, and hackathon experiences that reflect my learning journey in Electronics, AI-assisted development, and technology.</p>
+            </div>
+            
+            <!-- Stats Grid Section -->
+            <div class="projects-stats-grid scroll-reveal scale-in">
+                <div class="stat-card glass-card">
+                    <span class="stat-num">6+</span>
+                    <span class="stat-label">Projects Completed</span>
+                </div>
+                <div class="stat-card glass-card">
+                    <span class="stat-num">4</span>
+                    <span class="stat-label">Hardware Projects</span>
+                </div>
+                <div class="stat-card glass-card">
+                    <span class="stat-num">2</span>
+                    <span class="stat-label">Working Websites</span>
+                </div>
+                <div class="stat-card glass-card">
+                    <span class="stat-num">2</span>
+                    <span class="stat-label">Hackathons</span>
+                </div>
+            </div>
+
+            <!-- Optional Enhancement Label -->
+            <p class="project-grid-label">Hardware Projects &bull; Web Development &bull; Hackathons &bull; Continuous Learning</p>
+
+            <div class="projects-grid scroll-reveal fade-in-up">
+                <!-- Project 1 -->
+                <div class="project-card glass-card">
+                    <div class="project-placeholder">
+                        <!-- RFID Abstract SVG -->
+                        <svg class="placeholder-svg" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="10" width="180" height="100" rx="6" fill="none" stroke="rgba(0, 210, 255, 0.15)" stroke-width="1.5" />
+                            <rect x="70" y="30" width="60" height="40" rx="4" fill="none" stroke="#00d2ff" stroke-width="1.5" />
+                            <circle cx="100" cy="50" r="10" fill="none" stroke="#00d2ff" stroke-width="1" />
+                            <path d="M 60 85 L 140 85 M 100 85 L 100 70" fill="none" stroke="rgba(0, 210, 255, 0.4)" stroke-width="1" />
+                            <path d="M 30 50 A 20 20 0 0 1 50 70 M 30 40 A 30 30 0 0 1 60 70" fill="none" stroke="#00d2ff" stroke-width="1" stroke-linecap="round" />
+                            <text x="100" y="100" text-anchor="middle" font-size="8" fill="rgba(255, 255, 255, 0.4)" font-family="sans-serif">RFID MODULE RX-522</text>
+                        </svg>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-icon-title">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                            <h3>RFID Gate Access System</h3>
+                        </div>
+                        <p>An automated access control system using RFID technology, Arduino, LCD display, and servo motor. The system verifies user credentials and controls gate access securely.</p>
+                        <div class="project-tags">
+                            <span class="tag">RFID</span>
+                            <span class="tag">Arduino</span>
+                            <span class="tag">Embedded Systems</span>
+                            <span class="tag">Access Control</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card glass-card">
+                    <div class="project-placeholder">
+                        <!-- Smart Dustbin Abstract SVG -->
+                        <svg class="placeholder-svg" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="10" width="180" height="100" rx="6" fill="none" stroke="rgba(0, 210, 255, 0.15)" stroke-width="1.5" />
+                            <path d="M 85 40 L 115 40 L 110 90 L 90 90 Z" fill="none" stroke="#00d2ff" stroke-width="1.5" />
+                            <line x1="80" y1="35" x2="120" y2="35" stroke="#00d2ff" stroke-width="1.5" />
+                            <circle cx="100" cy="20" r="4" fill="none" stroke="rgba(0, 210, 255, 0.6)" stroke-width="1" />
+                            <path d="M 90 15 A 15 15 0 0 1 110 15" fill="none" stroke="#00d2ff" stroke-width="1" />
+                            <path d="M 85 10 A 25 25 0 0 1 115 10" fill="none" stroke="#00d2ff" stroke-width="1" />
+                            <text x="100" y="105" text-anchor="middle" font-size="8" fill="rgba(255, 255, 255, 0.4)" font-family="sans-serif">ULTRASONIC RANGE TRIG</text>
+                        </svg>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-icon-title">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                            <h3>Smart Dustbin</h3>
+                        </div>
+                        <p>An automatic waste management system that uses an ultrasonic sensor and servo motor to open and close the lid without physical contact.</p>
+                        <div class="project-tags">
+                            <span class="tag">Arduino</span>
+                            <span class="tag">Automation</span>
+                            <span class="tag">Ultrasonic Sensor</span>
+                            <span class="tag">Smart System</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card glass-card">
+                    <div class="project-placeholder">
+                        <!-- Speed Breaker Abstract SVG -->
+                        <svg class="placeholder-svg" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="10" width="180" height="100" rx="6" fill="none" stroke="rgba(0, 210, 255, 0.15)" stroke-width="1.5" />
+                            <path d="M 30 80 L 70 80 Q 100 50 130 80 L 170 80" fill="none" stroke="#00d2ff" stroke-width="1.5" />
+                            <path d="M 100 45 L 100 25 M 95 30 L 100 25 L 105 30" fill="none" stroke="#00d2ff" stroke-width="1" />
+                            <circle cx="100" cy="18" r="3" fill="none" stroke="rgba(0, 210, 255, 0.8)" stroke-width="1" />
+                            <text x="100" y="102" text-anchor="middle" font-size="8" fill="rgba(255, 255, 255, 0.4)" font-family="sans-serif">RF TELEMETRY TX MODULE</text>
+                        </svg>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-icon-title">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                            <h3>Speed Breaker Alert System</h3>
+                        </div>
+                        <p>A road safety project that detects approaching vehicles and provides warning alerts near speed breakers to improve driver awareness and reduce accidents.</p>
+                        <div class="project-tags">
+                            <span class="tag">Road Safety</span>
+                            <span class="tag">Arduino</span>
+                            <span class="tag">Sensors</span>
+                            <span class="tag">Alert System</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card glass-card">
+                    <div class="project-placeholder">
+                        <!-- Greenhouse Abstract SVG -->
+                        <svg class="placeholder-svg" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="10" width="180" height="100" rx="6" fill="none" stroke="rgba(0, 210, 255, 0.15)" stroke-width="1.5" />
+                            <path d="M 100 85 L 100 45" fill="none" stroke="#00d2ff" stroke-width="1.5" />
+                            <path d="M 100 65 Q 85 55 90 45 Q 100 55 100 65" fill="none" stroke="#00d2ff" stroke-width="1" />
+                            <path d="M 100 55 Q 115 45 110 35 Q 100 45 100 55" fill="none" stroke="#00d2ff" stroke-width="1" />
+                            <path d="M 70 70 L 70 90 M 75 70 L 75 90" fill="none" stroke="rgba(0, 210, 255, 0.5)" stroke-width="1" />
+                            <text x="100" y="105" text-anchor="middle" font-size="8" fill="rgba(255, 255, 255, 0.4)" font-family="sans-serif">SOIL MOISTURE ANALOG IN</text>
+                        </svg>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-icon-title">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 22V12"></path><path d="M12 12c0-2.76-2.24-5-5-5S2 9.24 2 12s2.24 5 5 5h5z"></path><path d="M12 12c0-2.76 2.24-5 5-5s5 2.24 5 5-2.24 5-5 5h-5z"></path></svg>
+                            <h3>Greenhouse Monitoring System</h3>
+                        </div>
+                        <p>An automated environmental monitoring system that measures temperature, humidity, and soil moisture to assist in greenhouse management and irrigation control.</p>
+                        <div class="project-tags">
+                            <span class="tag">IoT</span>
+                            <span class="tag">Sensors</span>
+                            <span class="tag">Agriculture</span>
+                            <span class="tag">Monitoring</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card glass-card">
+                    <div class="project-placeholder">
+                        <!-- Web Browser Schematic SVG -->
+                        <svg class="placeholder-svg" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="10" width="180" height="100" rx="6" fill="none" stroke="rgba(0, 210, 255, 0.15)" stroke-width="1.5" />
+                            <line x1="10" y1="25" x2="190" y2="25" stroke="rgba(0, 210, 255, 0.15)" stroke-width="1.5" />
+                            <circle cx="20" cy="18" r="2" fill="none" stroke="#00d2ff" stroke-width="1" />
+                            <circle cx="28" cy="18" r="2" fill="none" stroke="#00d2ff" stroke-width="1" />
+                            <circle cx="36" cy="18" r="2" fill="none" stroke="#00d2ff" stroke-width="1" />
+                            <circle cx="60" cy="60" r="16" fill="none" stroke="#00d2ff" stroke-width="1" />
+                            <rect x="90" y="45" width="80" height="8" rx="2" fill="none" stroke="rgba(0, 210, 255, 0.4)" stroke-width="1" />
+                            <rect x="90" y="58" width="60" height="6" rx="2" fill="none" stroke="rgba(0, 210, 255, 0.2)" stroke-width="1" />
+                            <rect x="90" y="69" width="70" height="6" rx="2" fill="none" stroke="rgba(0, 210, 255, 0.2)" stroke-width="1" />
+                            <text x="100" y="100" text-anchor="middle" font-size="8" fill="rgba(255, 255, 255, 0.4)" font-family="sans-serif">RESPONSIVE WEB FRONTEND</text>
+                        </svg>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-icon-title">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                            <h3>Restaurant Website</h3>
+                        </div>
+                        <p>A responsive restaurant website designed using modern web technologies. Features include menu sections, attractive user interface design, responsive layouts, and smooth user navigation.</p>
+                        <div class="project-tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">UI Design</span>
+                        </div>
+                        <a href="#" class="project-action-btn">View Project</a>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card glass-card">
+                    <div class="project-placeholder">
+                        <!-- Hackathon Logic Schematic SVG -->
+                        <svg class="placeholder-svg" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="10" width="180" height="100" rx="6" fill="none" stroke="rgba(0, 210, 255, 0.15)" stroke-width="1.5" />
+                            <path d="M 100 25 L 125 75 L 75 75 Z" fill="none" stroke="#00d2ff" stroke-width="1.5" />
+                            <line x1="100" y1="25" x2="100" y2="85" stroke="rgba(0, 210, 255, 0.3)" stroke-width="1" />
+                            <circle cx="100" cy="25" r="4" fill="none" stroke="#00d2ff" stroke-width="1.5" />
+                            <circle cx="125" cy="75" r="3" fill="none" stroke="#00d2ff" stroke-width="1.5" />
+                            <circle cx="75" cy="75" r="3" fill="none" stroke="#00d2ff" stroke-width="1.5" />
+                            <path d="M 90 90 L 100 80 L 110 90" fill="none" stroke="#00d2ff" stroke-width="1" />
+                            <text x="100" y="105" text-anchor="middle" font-size="8" fill="rgba(255, 255, 255, 0.4)" font-family="sans-serif">RAPID PROTOTYPE LOGIC</text>
+                        </svg>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-icon-title">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 2s-8 7-9 8a5 5 0 1 0-7 7l-2 2a1 1 0 0 0 1.4 1.4l2-2a5 5 0 1 0 8-8c1-.7 7-9 7-9z"></path><path d="M9 15l3-3"></path><path d="M17 17l4 4"></path><path d="M3 3l4 4"></path></svg>
+                            <h3>Hackathon Project</h3>
+                        </div>
+                        <p>A team-based project developed during a hackathon event. Built by combining creativity, problem-solving, teamwork, and rapid development techniques while working under time constraints.</p>
+                        <div class="project-tags">
+                            <span class="tag">Hackathon</span>
+                            <span class="tag">Innovation</span>
+                            <span class="tag">Teamwork</span>
+                            <span class="tag">Problem Solving</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section id="activities" class="activities-section scroll-reveal fade-in-up">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="subtitle">ACTIVITIES</span>
+                <h2 class="title">Technical Activities & <span class="title-gradient">Learning Journey</span></h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="activities-grid scroll-reveal fade-in-up">
+                <!-- Card 1 -->
+                <div class="activity-card glass-card">
+                    <div class="activity-icon">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    </div>
+                    <h3>Technical Workshops</h3>
+                    <p>Regularly attend technical workshops and seminars to explore emerging technologies, electronics concepts, and practical engineering applications. These experiences help me strengthen both my technical knowledge and hands-on skills.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="activity-card glass-card">
+                    <div class="activity-icon">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34"></path><path d="M12 2a6 6 0 0 0-6 6v5a6 6 0 0 0 12 0V8a6 6 0 0 0-6-6z"></path></svg>
+                    </div>
+                    <h3>Hackathons & Innovation</h3>
+                    <p>Participated in hackathons including the BVB College Hackathon and a First-Year Mini Hackathon conducted at S. G. Balekundri Institute of Technology. As a beginner in hackathons, I continuously learn teamwork, problem-solving, and creative thinking. I am currently aiming to participate in future cybersecurity events, including opportunities at IIT Hyderabad.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="activity-card glass-card">
+                    <div class="activity-icon">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="15" x2="23" y2="15"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="15" x2="4" y2="15"></line></svg>
+                    </div>
+                    <h3>Arduino Project Support</h3>
+                    <p>Assisted classmates in completing Arduino-based hardware projects by helping with circuit connections, sensor integration, coding support, troubleshooting, and project demonstrations. These experiences improved my practical understanding of electronics and teamwork.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="activity-card glass-card">
+                    <div class="activity-icon">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    </div>
+                    <h3>AI Learning & Knowledge Sharing</h3>
+                    <p>Passionate about AI-assisted development, vibe coding, and modern web technologies. I enjoy building websites with AI tools, sharing technical knowledge with friends, exploring GitHub projects, and continuously learning new technologies to improve my skills.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section scroll-reveal fade-in-up">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="subtitle">CONTACT</span>
+                <h2 class="title">Let's <span class="title-gradient">Connect</span></h2>
+                <div class="section-divider"></div>
+                <p class="section-desc">Feel free to connect with me for discussions about technology, electronics, projects, web development, AI-assisted learning, and innovation.</p>
+            </div>
+            
+            <div class="contact-grid">
+                <!-- Info cards column -->
+                <div class="contact-info scroll-reveal fade-in-left">
+                    <div class="contact-info-card glass-card">
+                        <!-- Email Card -->
+                        <a href="mailto:vinutpiradi7@gmail.com" class="contact-github-link">
+                            <div class="info-row">
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="color: var(--accent-cyan); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                            <polyline points="22,6 12,13 2,6"></polyline>
+                                        </svg>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; gap: 2px;">
+                                        <span class="info-label">Email</span>
+                                        <span class="info-val">vinutpiradi7@gmail.com</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Mobile Card -->
+                        <a href="tel:+918317369404" class="contact-github-link">
+                            <div class="info-row">
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="color: var(--accent-cyan); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                        </svg>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; gap: 2px;">
+                                        <span class="info-label">Mobile</span>
+                                        <span class="info-val">+91 8317369404</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- GitHub Card -->
+                        <a href="https://github.com/24-02-07" target="_blank" rel="noopener noreferrer" class="contact-github-link">
+                            <div class="info-row github-row">
+                                <div style="display: flex; align-items: flex-start; gap: 12px;">
+                                    <div style="color: var(--accent-cyan); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">
+                                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                        </svg>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; gap: 2px;">
+                                        <span class="info-label">GitHub</span>
+                                        <span class="info-val">24-02-07</span>
+                                        <span class="github-desc">Explore my repositories, projects, and learning journey on GitHub.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Current Interests -->
+                        <div class="interests-container">
+                            <h4>Current Interests</h4>
+                            <ul class="interests-list">
+                                <li>Web Development</li>
+                                <li>AI-Assisted Development</li>
+                                <li>Arduino Projects</li>
+                                <li>Cybersecurity Learning</li>
+                                <li>Hackathons</li>
+                                <li>Electronics</li>
+                            </ul>
+                        </div>
+
+                        <!-- Closing Tagline -->
+                        <div class="contact-closing">
+                            "Always learning, building, and exploring new technologies."
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Feedback form column -->
+                <div class="contact-form-wrapper glass-card scroll-reveal fade-in-right">
+                    <form id="contact-form" class="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="form-name" class="form-control" required placeholder=" ">
+                            <label for="form-name" class="form-label">Name</label>
+                            <span class="form-bar"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="form-email" class="form-control" required placeholder=" ">
+                            <label for="form-email" class="form-label">Email</label>
+                            <span class="form-bar"></span>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="form-message" class="form-control form-textarea" required placeholder=" "></textarea>
+                            <label for="form-message" class="form-label">Message</label>
+                            <span class="form-bar"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <span>Submit Message</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <span class="footer-logo">Vinut<span class="logo-accent">.P</span></span>
+            <p>&copy; 2026 Vinut Piradi. Electronics and Communication Engineering Student Portfolio.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Application Script -->
+    <script src="app.js"></script>
+</body>
+</html>
